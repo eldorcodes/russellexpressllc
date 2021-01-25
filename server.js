@@ -44,6 +44,18 @@ mongoose.connect(keys.MongoURI, {
 }).catch((err) => {
     console.log(err);
 });
+app.get('/',(req,res) => {
+    res.render('home');
+});
+app.get('/about',(req,res) => {
+    res.render('about')
+})
+app.get('/apply',(req,res) => {
+    res.render('apply')
+})
+app.get('/contact',(req,res) => {
+    res.render('contact')
+})
 const server = http.createServer(app);
 // SOCKET CONNECTION AND NOTIFIER STARTS
 const io = socketIO(server);

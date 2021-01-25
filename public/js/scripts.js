@@ -53,8 +53,12 @@ jQuery(document).ready(function(){
     socket.emit('newDriverInfo',newDriver);
     var serviceMSG = jQuery('#service-msg');
     var serviceForm = jQuery('#serviceForm');
+    var applyOnlineHeader = jQuery('#applyOnlineHeader');
+    var Successful = jQuery('#Successful');
     serviceMSG.attr('style','display:block');
+    Successful.attr('style','display:block');
     serviceForm.attr('style','display:none');
+    applyOnlineHeader.attr('style','display:none');
   });
   // display review form
   var reviewDisplayer = jQuery('#review-btn');
