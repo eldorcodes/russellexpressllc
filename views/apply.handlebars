@@ -6,6 +6,7 @@
                 <div class="section-title">
                     <h2 id="applyOnlineHeader">Apply Now!</h2>
                     <h2 id="Successful" style="display: none;">Success!</h2>
+                    <h3 id="errorMSG" style="color:red"></h3>
                 </div>
             </div>
         </div>
@@ -89,5 +90,18 @@
                 </form>
             </div>
         </div>
+        <hr>
+        <p>
+            <a href="/">Home Page</a> | <a href="/#about">About</a> | <a href="/#terms">Terms and Conditions</a>
+        </p>
     </div>
 </section>
+<script type="text/javascript"
+ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCazsdPAkeA3D7dMpMwENAx9hIyXa2dxIE&libraries=places&callback=fetchLocation"></script>
+ <script>
+        // fetch location using javascript
+ function fetchLocation(){
+     var location = document.getElementById('client-address');
+     var Autocomplete = new google.maps.places.Autocomplete(location);
+ }
+</script>

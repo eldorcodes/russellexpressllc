@@ -4,7 +4,7 @@ google.maps.event.addDomListener(window, 'load', initMap);
 function initMap() {
     var mapOptions = {
         // How zoomed in you want the map to start at (always required)
-        zoom: 9, // The latitude and longitude to center the map (always required)
+        zoom: 10, // The latitude and longitude to center the map (always required)
         center: new google.maps.LatLng(40.7128, -74.0060), // Philadelphia
         // How you would like to style the map.
         // This is where you would paste any style found on Snazzy Maps.
@@ -168,7 +168,7 @@ function initMap() {
     var map = new google.maps.Map(mapElement, mapOptions);
     // Let's also add a marker while we're at it
     var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(40.6782, -73.9442),
+        position: new google.maps.LatLng(40.606807, -73.9642779),
         map: map,
         title: 'We are here',
         icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'

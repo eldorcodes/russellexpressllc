@@ -7,6 +7,8 @@ const socketIO = require('socket.io');
 const mongoose = require('mongoose');
 const keys = require('./config/key');
 const Nexmo = require('nexmo');
+const Handlebars = require('handlebars');
+const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 // Load models
 const Contact = require('./models/contact');
 const Driver = require('./models/driver');
@@ -18,6 +20,7 @@ const {
     getLastMinute,
     getYear
 } = require('./helpers/time');
+const key = require('./config/key');
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({
     extended: false
@@ -25,6 +28,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 app.engine('handlebars', exphbs({
     defaultLayout: 'main',
+    handlebars:allowInsecurePrototypeAccess(Handlebars),
     helpers: {
         formatDate: formatDate,
         getLastMinute: getLastMinute,
@@ -55,6 +59,14 @@ app.get('/apply',(req,res) => {
 })
 app.get('/contact',(req,res) => {
     res.render('contact')
+})
+app.get('/drivers',(req,res) => {
+    Driver.find({}).then((drivers) => {
+        console.log(drivers)
+        res.render('drivers',{
+            drivers:drivers
+        })
+    }).catch((e) => console.log(e))
 })
 const server = http.createServer(app);
 // SOCKET CONNECTION AND NOTIFIER STARTS

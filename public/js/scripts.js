@@ -37,28 +37,37 @@ jQuery(document).ready(function(){
     var clientLicenseNumber = jQuery('#client-license-number').val();
     var typeoflicense = jQuery('#typeoflicense').val();
     var legalDocument = jQuery('#legalDocument').val();
-    var newDriver = {
-      name:name,
-      email:email,
-      number:number,
-      ssn:ssn,
-      address:address,
-      age:age,
-      clientDrivingExperience:clientDrivingExperience,
-      typeOfLicense:typeoflicense,
-      clientLicenseNumber:clientLicenseNumber,
-      legalDocument:legalDocument,
-      date: new Date()
+
+    // make sure user does not submit form empty
+    if (!name || !email || !number || !ssn || !address || !age || !clientDrivingExperience || !clientLicenseNumber || !typeoflicense || !legalDocument) {
+      jQuery('#errorMSG').text('Please fill out the form!')
+    } else {
+      var newDriver = {
+        name:name,
+        email:email,
+        number:number,
+        ssn:ssn,
+        address:address,
+        age:age,
+        clientDrivingExperience:clientDrivingExperience,
+        typeOfLicense:typeoflicense,
+        clientLicenseNumber:clientLicenseNumber,
+        legalDocument:legalDocument,
+        date: new Date()
+      }
+      socket.emit('newDriverInfo',newDriver);
+      var serviceMSG = jQuery('#service-msg');
+      var serviceForm = jQuery('#serviceForm');
+      var applyOnlineHeader = jQuery('#applyOnlineHeader');
+      var Successful = jQuery('#Successful');
+      serviceMSG.attr('style','display:block');
+      Successful.attr('style','display:block');
+      serviceForm.attr('style','display:none');
+      applyOnlineHeader.attr('style','display:none');
+
+      jQuery('#errorMSG').text('')
     }
-    socket.emit('newDriverInfo',newDriver);
-    var serviceMSG = jQuery('#service-msg');
-    var serviceForm = jQuery('#serviceForm');
-    var applyOnlineHeader = jQuery('#applyOnlineHeader');
-    var Successful = jQuery('#Successful');
-    serviceMSG.attr('style','display:block');
-    Successful.attr('style','display:block');
-    serviceForm.attr('style','display:none');
-    applyOnlineHeader.attr('style','display:none');
+  
   });
   // display review form
   var reviewDisplayer = jQuery('#review-btn');

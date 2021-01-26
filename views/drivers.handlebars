@@ -1,0 +1,32 @@
+<section id="service" class="service-area section-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="section-title">
+                        <h2>Applications</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {{#each drivers}}
+                <div class="col-md-6 col-sm-6">
+                    <div class="single-service wow fadeInUp" data-wow-delay="0.2s">
+                        <i class="fa"><img src="assets/images/user.png"></i>
+                        <h2>{{name}}</h2>
+                        <p>Email: <a href="#{{email}}"> {{email}}</a></p>
+                        <p>Phone: <a href="#{{number}}"> {{number}}</a></p>
+                        <p>SSN: {{ssn}}</p>
+                        <p>Experience: {{clientDrivingExperience}}</p>
+                        <p>License Type: {{typeOfLicense}}</p>
+                        <p>License Number: {{clientLicenseNumber}}</p>
+                        <p>Legal Document: {{legalDocument}}</p>
+                        <p>Address: {{address}}</p>
+                        <small style="color: royalblue;">{{getLastMinute date}}</small>
+                    </div>
+                </div>
+                {{else}}
+                <p>No application received</p>
+            {{/each}}
+            </div>
+        </div>
+    </section>
