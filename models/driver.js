@@ -32,6 +32,9 @@ const driverSchema = new Schema({
   legalDocument:{
     type: String
   },
+  licenseImage:{
+    type:String
+  },
   date: {
     type: Date,
     default: Date.now

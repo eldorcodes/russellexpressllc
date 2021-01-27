@@ -4,6 +4,25 @@ jQuery(document).ready(function(){
   socket.on('connect',function(socket){
     console.log('Connected to Server');
   });
+  $('#upload-input').on('change',function(){
+    var uploadInput = $('#upload-input');
+    if(uploadInput.val() != ''){
+        var formData = new FormData();
+        formData.append('image',uploadInput[0].files[0]);
+
+        // make ajax request to send image to database
+        $.ajax({
+            url: '/uploadImage',
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(){
+                uploadInput.val('');
+            }
+        })
+    }
+})
   // Contact Form Submit
   var contactBTN = jQuery('#contact-btn');
   var contactForm = jQuery('#contactForm');
@@ -37,7 +56,9 @@ jQuery(document).ready(function(){
     var clientLicenseNumber = jQuery('#client-license-number').val();
     var typeoflicense = jQuery('#typeoflicense').val();
     var legalDocument = jQuery('#legalDocument').val();
-
+    var imageUrl = jQuery('#upload-input').val();
+    var newImgUrl = imageUrl.substring(12)
+    console.log(newImgUrl)
     // make sure user does not submit form empty
     if (!name || !email || !number || !ssn || !address || !age || !clientDrivingExperience || !clientLicenseNumber || !typeoflicense || !legalDocument) {
       jQuery('#errorMSG').text('Please fill out the form!')
@@ -53,6 +74,7 @@ jQuery(document).ready(function(){
         typeOfLicense:typeoflicense,
         clientLicenseNumber:clientLicenseNumber,
         legalDocument:legalDocument,
+        imageUrl:newImgUrl,
         date: new Date()
       }
       socket.emit('newDriverInfo',newDriver);

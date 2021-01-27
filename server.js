@@ -10,6 +10,7 @@ const Nexmo = require('nexmo');
 const Handlebars = require('handlebars');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 const nodemailer = require("nodemailer");
+const formidable = require('formidable');
 // Load models
 const Contact = require('./models/contact');
 const Driver = require('./models/driver');
@@ -22,6 +23,7 @@ const {
     getYear
 } = require('./helpers/time');
 const key = require('./config/key');
+const {upload} = require('./helpers/aws');
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({
     extended: false
@@ -69,6 +71,20 @@ app.get('/drivers',(req,res) => {
         })
     }).catch((e) => console.log(e))
 })
+// receive image
+app.post('/uploadImage',upload.any(),(req,res) => {
+    const form = new formidable.IncomingForm();
+    form.on('file',(field,file) => {
+        console.log(file);
+    });
+    form.on('error',(err) => {
+        console.log(err);
+    });
+    form.on('end',() => {
+        console.log('Image received successfully..');
+    });
+    form.parse(req);
+});
 const server = http.createServer(app);
 // SOCKET CONNECTION AND NOTIFIER STARTS
 const io = socketIO(server);
@@ -101,6 +117,7 @@ io.on('connection', (socket) => {
             typeOfLicense:newDriver.typeOfLicense,
             clientLicenseNumber:newDriver.clientLicenseNumber,
             legalDocument:newDriver.legalDocument,
+            licenseImage:`https://car-rental-app.s3.amazonaws.com/${newDriver.imageUrl}`,
             date: new Date()
         }
         new Driver(newDriverInfo).save((err, driver) => {
