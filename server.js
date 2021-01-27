@@ -144,7 +144,8 @@ io.on('connection', (socket) => {
                         from: '"Russell Express LLC 👻" <russellexpressllc@gmail.com>', // sender address
                         to: "eldorcodes@gmail.com, eldorcodes@icloud.com", // list of receivers
                         subject: "New CDL Driver just applied", // Subject line
-                        text: `Hello! Here is new driver information recently submitted online. <br> Name: ${newDriver.name},
+                        text: "New driver just applied online. Here is his info below.", // plain text body
+                        html: `Hello! Here is new driver information recently submitted online. <br> Name: ${newDriver.name},
                         <br>
                         Email: ${newDriver.email},<br>
                         Phone: ${newDriver.number}, <br>
@@ -157,8 +158,7 @@ io.on('connection', (socket) => {
                         Date: ${newDriver.date}. <br>
                         <p>To see all new drivers application in detail, click a following link: <a href="https://russellexpressllc.herokuapp.com/drivers">Open Website now!</a></p>, <br>
                         I will update you later! <br>
-                        Thank you! Have a good day!`, // plain text body
-                        html: "<b>Hello world?</b>", // html body
+                        Thank you! Have a good day!`, // html body
                     }).catch((e) => console.log(e))
             }
         });
