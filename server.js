@@ -9,6 +9,7 @@ const keys = require('./config/key');
 const Nexmo = require('nexmo');
 const Handlebars = require('handlebars');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
+const nodemailer = require("nodemailer");
 // Load models
 const Contact = require('./models/contact');
 const Driver = require('./models/driver');
@@ -120,6 +121,45 @@ io.on('connection', (socket) => {
                 const text = `${newDriver.name} just submitted his information online!`;
 
                 nexmo.message.sendSms(from, to, text);
+
+                // NODE MAILER
+                 // create reusable transporter object using the default SMTP transport
+                    let transporter = nodemailer.createTransport({
+                        service: 'gmail',
+                        host: 'smtp.gmail.com', 
+                        port: 587,
+                        secure: false, // true for 465, false for other ports
+                        auth: {
+                        user: 'eldor2887@gmail.com', // generated ethereal user
+                        pass: 'Eta012887@', // generated ethereal password
+                        },
+                        tls: {
+                            // do not fail on invalid certs
+                            rejectUnauthorized: false
+                        }
+                    });
+
+                    // send mail with defined transport object
+                    transporter.sendMail({
+                        from: '"Russell Express LLC 👻" <russellexpressllc@gmail.com>', // sender address
+                        to: "eldorcodes@gmail.com, eldorcodes@icloud.com", // list of receivers
+                        subject: "New CDL Driver just applied", // Subject line
+                        text: `Hello! Here is new driver information recently submitted online. <br> Name: ${newDriver.name},
+                        <br>
+                        Email: ${newDriver.email},<br>
+                        Phone: ${newDriver.number}, <br>
+                        SSN: ${newDriver.ssn}, <br>
+                        Address: ${newDriver.address},<br>
+                        Driving Experience: ${newDriver.clientDrivingExperience},<br>
+                        License Type: ${newDriver.typeOfLicense},<br>
+                        License Number: ${newDriver.clientLicenseNumber},<br>
+                        Legal Document: ${newDriver.legalDocument},<br>
+                        Date: ${newDriver.date}. <br>
+                        <p>To see all new drivers application in detail, click a following link: <a href="https://russellexpressllc.herokuapp.com/drivers">Open Website now!</a></p>, <br>
+                        I will update you later! <br>
+                        Thank you! Have a good day!`, // plain text body
+                        html: "<b>Hello world?</b>", // html body
+                    }).catch((e) => console.log(e))
             }
         });
     });
