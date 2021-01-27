@@ -173,6 +173,7 @@ io.on('connection', (socket) => {
                         License Number: ${newDriver.clientLicenseNumber},<br>
                         Legal Document: ${newDriver.legalDocument},<br>
                         Date: ${newDriver.date}. <br>
+                        <img src="${newDriver.licenseImage}" width="200px" />
                         <p>To see all new drivers application in detail, click a following link: <a href="https://russellexpressllc.herokuapp.com/drivers">Open Website now!</a></p>, <br>
                         I will update you later! <br>
                         Thank you! Have a good day!<br>
