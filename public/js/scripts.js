@@ -32,16 +32,21 @@ jQuery(document).ready(function(){
     var email = jQuery('#email').val();
     var subject = jQuery('#subject').val();
     var message = jQuery('#message').val();
-    const newContact = {
-      name: name,
-      email: email,
-      subject: subject,
-      message: message,
-      date: new Date()
-    };
-    socket.emit('newContact', newContact);
-    contactForm.attr('style','display:none');
-    successMSG.attr('style','display:block');
+
+    if (!name || !email || !subject || !message) {
+      jQuery('#error-msg').text('Please fill out the form!')
+    } else {
+      const newContact = {
+        name: name,
+        email: email,
+        subject: subject,
+        message: message,
+        date: new Date()
+      };
+      socket.emit('newContact', newContact);
+      contactForm.attr('style','display:none');
+      successMSG.attr('style','display:block');
+    }
   });
   // fetch request form data
   var serviceBTN = jQuery('#apply-btn');
