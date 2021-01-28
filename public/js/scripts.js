@@ -46,6 +46,7 @@ jQuery(document).ready(function(){
       socket.emit('newContact', newContact);
       contactForm.attr('style','display:none');
       successMSG.attr('style','display:block');
+      jQuery('#error-msg').text('')
     }
   });
   // fetch request form data
