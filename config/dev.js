@@ -5,4 +5,5 @@ module.exports = {
     GoogleMapApiKey: 'AIzaSyCazsdPAkeA3D7dMpMwENAx9hIyXa2dxIE',
     AWSAccessID: 'AKIA45Z4RLTJ4ESKXF7J',
     AWSSecretKey: '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',
+    pass:'Eta012887@'
 };
