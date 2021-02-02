@@ -147,25 +147,32 @@
                     and we will get back to you as soon as we can. 
                     Thank you
                 </p>
-                <form id="serviceForm" class="contact-form" action="#" method="post">
+                 <form id="serviceForm" class="contact-form" action="#" method="post">
                     <div class="row">
                         <div class="col-md-6 form-group">
+                            <label for="client-age">Name</label>
                             <input id="client-name" class="form-control" type="text" name="client-name"
-                                placeholder="Name" required>
+                                placeholder="First and Last Name" required>
                         </div>
                         <div class="col-md-6 form-group">
+                            <label for="client-age">Email</label>
                             <input id="client-email" class="form-control" type="email" name="client-email"
                                 placeholder="Email" required>
                         </div>
                         <div class="col-md-6 form-group">
-                            <input id="client-number" class="form-control" type="text" name="client-number"
-                                placeholder="Phone" required>
+                            <label for="client-age">Phone Number</label>
+                            <input id="client-number" class="form-control" maxlength="10"
+                            type="text" name="client-number"
+                                placeholder="Phone number" required>
                         </div>
                         <div class="col-md-6 form-group">
-                            <input id="client-ssn" class="form-control" type="password" name="client-ssn"
+                            <label for="client-age">SSN or EIN</label>
+                            <input id="client-ssn" class="form-control" maxlength="9"
+                            type="password" name="client-ssn"
                                 placeholder="Social Security Number" required>
                         </div>
                         <div class="col-md-12 form-group">
+                            <label for="client-age">Address</label>
                             <input id="client-address" class="form-control" type="text" name="client-address"
                                 placeholder="123 Main st, Manhattan, NY 11222" required>
                         </div>
@@ -204,7 +211,7 @@
                         <div class="col-md-6 form-group">
                             <label for="client-license-number">License number</label>
                             <input id="client-license-number" class="form-control" type="text" 
-                            name="client-license-number"
+                            name="client-license-number" maxlength="9"
                             placeholder="CDL license number" required>
                         </div>
                         <div class="col-md-12 form-group">
