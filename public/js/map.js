@@ -4,162 +4,9 @@ google.maps.event.addDomListener(window, 'load', initMap);
 function initMap() {
     var mapOptions = {
         // How zoomed in you want the map to start at (always required)
-        zoom: 10, // The latitude and longitude to center the map (always required)
-        center: new google.maps.LatLng(40.7128, -74.0060), // Philadelphia
+        zoom: 8, // The latitude and longitude to center the map (always required)
+        center: new google.maps.LatLng(39.1031, -84.5120), // Philadelphia
         // How you would like to style the map.
-        // This is where you would paste any style found on Snazzy Maps.
-        styles: [{
-                "featureType": "all",
-                "elementType": "labels.text.fill",
-                "stylers": [{
-                        "saturation": 36
-                    },
-                    {
-                        "color": "#000000"
-                    },
-                    {
-                        "lightness": 40
-                    }
-                ]
-            },
-            {
-                "featureType": "all",
-                "elementType": "labels.text.stroke",
-                "stylers": [{
-                        "visibility": "on"
-                    },
-                    {
-                        "color": "#000000"
-                    },
-                    {
-                        "lightness": 16
-                    }
-                ]
-            },
-            {
-                "featureType": "all",
-                "elementType": "labels.icon",
-                "stylers": [{
-                    "visibility": "off"
-                }]
-            },
-            {
-                "featureType": "administrative",
-                "elementType": "geometry.fill",
-                "stylers": [{
-                        "color": "#000000"
-                    },
-                    {
-                        "lightness": 20
-                    }
-                ]
-            },
-            {
-                "featureType": "administrative",
-                "elementType": "geometry.stroke",
-                "stylers": [{
-                        "color": "#000000"
-                    },
-                    {
-                        "lightness": 17
-                    },
-                    {
-                        "weight": 1.2
-                    }
-                ]
-            },
-            {
-                "featureType": "landscape",
-                "elementType": "geometry",
-                "stylers": [{
-                        "color": "#000000"
-                    },
-                    {
-                        "lightness": 20
-                    }
-                ]
-            },
-            {
-                "featureType": "poi",
-                "elementType": "geometry",
-                "stylers": [{
-                        "color": "#000000"
-                    },
-                    {
-                        "lightness": 21
-                    }
-                ]
-            },
-            {
-                "featureType": "road.highway",
-                "elementType": "geometry.fill",
-                "stylers": [{
-                        "color": "#000000"
-                    },
-                    {
-                        "lightness": 17
-                    }
-                ]
-            },
-            {
-                "featureType": "road.highway",
-                "elementType": "geometry.stroke",
-                "stylers": [{
-                        "color": "#000000"
-                    },
-                    {
-                        "lightness": 29
-                    },
-                    {
-                        "weight": 0.2
-                    }
-                ]
-            },
-            {
-                "featureType": "road.arterial",
-                "elementType": "geometry",
-                "stylers": [{
-                        "color": "#000000"
-                    },
-                    {
-                        "lightness": 18
-                    }
-                ]
-            },
-            {
-                "featureType": "road.local",
-                "elementType": "geometry",
-                "stylers": [{
-                        "color": "#000000"
-                    },
-                    {
-                        "lightness": 16
-                    }
-                ]
-            },
-            {
-                "featureType": "transit",
-                "elementType": "geometry",
-                "stylers": [{
-                        "color": "#000000"
-                    },
-                    {
-                        "lightness": 19
-                    }
-                ]
-            },
-            {
-                "featureType": "water",
-                "elementType": "geometry",
-                "stylers": [{
-                        "color": "#BDC3C7"
-                    },
-                    {
-                        //"lightness": 17
-                    }
-                ]
-            }
-        ]
     };
     // Get the HTML DOM element that will contain your map
     // We are using a div with id="map" seen below in the <body>
@@ -168,9 +15,13 @@ function initMap() {
     var map = new google.maps.Map(mapElement, mapOptions);
     // Let's also add a marker while we're at it
     var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(40.606807, -73.9642779),
+        position: new google.maps.LatLng(39.274287, -84.395428),
         map: map,
         title: 'We are here',
         icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
     });
+    var infoWindow = new google.maps.InfoWindow({
+        content: "<h3>Russell Express LLC</h3>"
+    })
+    infoWindow.open(map,marker)
 }
