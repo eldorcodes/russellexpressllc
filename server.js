@@ -159,7 +159,7 @@ io.on('connection', (socket) => {
                     // send mail with defined transport object
                     transporter.sendMail({
                         from: '"Russell Express LLC" <russellexpressllc@gmail.com>', // sender address
-                        to: "eldorcodes@gmail.com, eldorcodes@icloud.com", // list of receivers
+                        to: "russellxpress@gmail.com, eldorcodes@icloud.com", // list of receivers
                         subject: "New CDL Driver just submitted application online.", // Subject line
                         text: "Here is detailed information below.", // plain text body
                         html: `Hello! Here is new driver information recently submitted online. <br> Name: ${newDriver.name},
