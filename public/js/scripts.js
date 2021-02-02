@@ -10,7 +10,7 @@ jQuery(document).ready(function(){
     var progress = Math.round(percent);
     $("#uploadProgressBar").html(progress + " percent na ang progress");
     $("#uploadProgressBar").css("width", progress + "%");
-    $("#status").html(progress + "% uploaded... please wait");
+    $("#status").html(progress + "% uploaded...");
 }
 
 function loadHandler(event) {
