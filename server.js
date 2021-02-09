@@ -150,13 +150,8 @@ io.on('connection', (socket) => {
                         port: 587,
                         secure: false, // true for 465, false for other ports
                         auth: {
-<<<<<<< HEAD
                         user: 'eldor2887@gmail.com', // generated ethereal user
                         pass: keys.pass, // generated ethereal password
-=======
-                        user: 'example@gmail.com', // generated ethereal user
-                        pass: 'password', // generated ethereal password
->>>>>>> f1bf73b09c845eb02374518df49f6bb6e7a3d840
                         },
                         tls: {
                             // do not fail on invalid certs
