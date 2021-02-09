@@ -11,6 +11,7 @@ const Handlebars = require('handlebars');
 const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
 const nodemailer = require("nodemailer");
 const formidable = require('formidable');
+const cors = require('cors');
 // Load models
 const Contact = require('./models/contact');
 const Driver = require('./models/driver');
@@ -29,6 +30,7 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
+app.use(cors());
 app.engine('handlebars', exphbs({
     defaultLayout: 'main',
     handlebars:allowInsecurePrototypeAccess(Handlebars),

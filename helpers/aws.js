@@ -13,7 +13,7 @@ const s3 = new aws.S3({});
 const upload = multer({
     storage: multers3({
         s3:s3,
-        bucket: 'your-bucket-name',
+        bucket: 'car-rental-app',
         acl: 'public-read',
         metadata: (req,file,cb) => {
             cb(null,{fieldName:file.fieldname});
