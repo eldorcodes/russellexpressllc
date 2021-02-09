@@ -60,6 +60,9 @@ app.get('/about',(req,res) => {
 app.get('/apply',(req,res) => {
     res.render('apply')
 })
+app.get('/applyindetail',(req,res) => {
+    res.render('applyindetail')
+})
 app.get('/contact',(req,res) => {
     res.render('contact')
 })

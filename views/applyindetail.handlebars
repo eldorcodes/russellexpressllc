@@ -1,0 +1,107 @@
+<section id="apply" class="contact-me-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="section-title">
+                    <h2 id="applyOnlineHeader">Apply Now!</h2>
+                    <h2 id="Successful" style="display: none;">Success!</h2>
+                    <h3 id="errorMSG" style="color:red"></h3>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <p class="green" id="service-msg" style="display: none;">
+                    Application has been submitted successfully!
+                    Your application is being reviewed by our team,
+                    and we will get back to you as soon as we can. 
+                    Thank you
+                </p>
+                <form id="serviceForm" class="contact-form" action="#" method="post">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="client-age">Name</label>
+                            <input id="client-name" class="form-control" type="text" name="client-name"
+                                placeholder="First and Last Name" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="client-age">Email</label>
+                            <input id="client-email" class="form-control" type="email" name="client-email"
+                                placeholder="Email" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="client-age">Phone Number</label>
+                            <input id="client-number" class="form-control" maxlength="10"
+                            type="text" name="client-number"
+                                placeholder="Phone number" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="client-age">SSN or EIN</label>
+                            <input id="client-ssn" class="form-control" maxlength="9"
+                            type="password" name="client-ssn"
+                                placeholder="Social Security Number" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="client-age">Address</label>
+                            <input id="client-address" class="form-control" type="text" name="client-address"
+                                placeholder="City and State" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="client-age">Are you at least 21 years old?</label>
+                            <select id="client-age" class="form-control">
+                                <option value="yes" selected>Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="client-driving-experience">How many years of driving experience?</label>
+                            <select id="client-driving-experience" class="form-control">
+                                <option value="less than 1" selected>Less than year</option>
+                                <option value="1 year">1 year</option>
+                                <option value="2 years">2 years</option>
+                                <option value="3 years">3 years</option>
+                                <option value="5 years">5 years</option>
+                                <option value="more than 5 years">More than 5 years</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 form-group">
+                               <label for="upload-input">Upload CDL license</label>
+                        <input class="btn form-control" type="file" name="image" id="upload-input" required>
+                        <progress id="uploadProgressBar" value="0" max="100" style="width:100%;"></progress>
+                        <h3 id="status"></h3>
+                        <p id="loaded_n_total"></p>
+                    </div>
+                        <div class="col-md-6 form-group">
+                            <label for="typeoflicense">Type of License</label>
+                            <select id="typeoflicense" class="form-control">
+                                <option value="class A" selected>Class A</option>
+                                <option value="class B">Class B</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="client-license-number">License number</label>
+                            <input id="client-license-number" class="form-control" type="text" 
+                            name="client-license-number" maxlength="9"
+                            placeholder="CDL license number" required>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="legalDocument">Legal Document</label>
+                            <select id="legalDocument" class="form-control">
+                                <option value="green card" selected>Green Card</option>
+                                <option value="work authorization">Work authorization</option>
+                                <option value="US citizen">US Citizen</option>
+                            </select>
+                        </div>
+                        <div class="col-md-12 text-center">
+                            <button class="btn" id="apply-btn" type="button">Submit</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <p>
+            <a href="/">Home Page</a> | <a href="/#about">About</a> | <a href="/#terms">Terms and Conditions</a>
+        </p>
+    </div>
+</section>
