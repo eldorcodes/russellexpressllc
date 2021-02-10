@@ -4,6 +4,18 @@ jQuery(document).ready(function(){
   socket.on('connect',function(socket){
     console.log('Connected to Server');
   });
+  // type event handler
+        // var emailEl = jQuery('#client-email');
+        // emailEl.on('keypress',function(){
+        //   var email = jQuery('#client-email').val();
+        //   socket.emit('email',{email:email})
+        // })
+        // var numberEl = jQuery('#client-number');
+        // numberEl.on('keypress',function(){
+        // var number = jQuery('#client-number').val();
+        // socket.emit('number',{number:number})
+        // });
+  // done typing handler
   function uploadProgressHandler(event) {
     $("#loaded_n_total").html("Uploaded " + event.loaded + " bytes of " + event.total);
     var percent = (event.loaded / event.total) * 100;

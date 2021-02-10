@@ -187,6 +187,13 @@ io.on('connection', (socket) => {
             }
         });
     });
+    // handling typing event triggered by client
+    // socket.on('email',(email) => {
+    //     console.log(email.email)
+    // })
+    // socket.on('number',(number) => {
+    //     console.log(number.number)
+    // })
     // listen to newReview event
     socket.on('newReview',(newReview) => {
         console.log(newReview);
