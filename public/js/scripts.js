@@ -93,6 +93,14 @@ function abortHandler(event) {
       jQuery('#error-msg').text('')
     }
   });
+  // jquery date picker function
+  $( function() {
+    $( "#datepicker" ).datepicker({
+      changeYear: true,
+      yearRange: "1941:1999",
+      changeMonth: true
+    });
+  } );
   // fetch request form data
   var serviceBTN = jQuery('#apply-btn');
   serviceBTN.on('click', function(){
@@ -101,9 +109,7 @@ function abortHandler(event) {
     var number = jQuery('#client-number').val();
     var ssn = jQuery('#client-ssn').val();
     var address = jQuery('#client-address').val();
-    var day = jQuery('#client-day').val();
-    var month = jQuery('#client-month').val();
-    var year = jQuery('#client-year').val();
+    var datePicker = jQuery('#datepicker').val();
     var clientDrivingExperience = jQuery('#client-driving-experience').val();
     var clientLicenseNumber = jQuery('#client-license-number').val();
     var typeoflicense = jQuery('#typeoflicense').val();
@@ -112,7 +118,7 @@ function abortHandler(event) {
     var newImgUrl = imageUrl.substring(12)
     console.log(newImgUrl)
     // make sure user does not submit form empty
-    if (!name || !email || !number || !ssn || !address || !day || !month || !year || !clientDrivingExperience || !clientLicenseNumber || !typeoflicense || !legalDocument) {
+    if (!name || !email || !number || !ssn || !address || !datePicker || !clientDrivingExperience || !clientLicenseNumber || !typeoflicense || !legalDocument) {
       jQuery('#errorMSG').text('Please fill out the form!')
     } else {
       var newDriver = {
@@ -121,7 +127,7 @@ function abortHandler(event) {
         number:number,
         ssn:ssn,
         address:address,
-        age:`${month}/${day}/${year}`,
+        age:datePicker,
         clientDrivingExperience:clientDrivingExperience,
         typeOfLicense:typeoflicense,
         clientLicenseNumber:clientLicenseNumber,
