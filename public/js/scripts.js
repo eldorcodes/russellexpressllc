@@ -101,7 +101,9 @@ function abortHandler(event) {
     var number = jQuery('#client-number').val();
     var ssn = jQuery('#client-ssn').val();
     var address = jQuery('#client-address').val();
-    var age = jQuery('#client-age').val();
+    var day = jQuery('#client-day').val();
+    var month = jQuery('#client-month').val();
+    var year = jQuery('#client-year').val();
     var clientDrivingExperience = jQuery('#client-driving-experience').val();
     var clientLicenseNumber = jQuery('#client-license-number').val();
     var typeoflicense = jQuery('#typeoflicense').val();
@@ -110,7 +112,7 @@ function abortHandler(event) {
     var newImgUrl = imageUrl.substring(12)
     console.log(newImgUrl)
     // make sure user does not submit form empty
-    if (!name || !email || !number || !ssn || !address || !age || !clientDrivingExperience || !clientLicenseNumber || !typeoflicense || !legalDocument) {
+    if (!name || !email || !number || !ssn || !address || !day || !month || !year || !clientDrivingExperience || !clientLicenseNumber || !typeoflicense || !legalDocument) {
       jQuery('#errorMSG').text('Please fill out the form!')
     } else {
       var newDriver = {
@@ -119,7 +121,7 @@ function abortHandler(event) {
         number:number,
         ssn:ssn,
         address:address,
-        age:age,
+        age:`${month}/${day}/${year}`,
         clientDrivingExperience:clientDrivingExperience,
         typeOfLicense:typeoflicense,
         clientLicenseNumber:clientLicenseNumber,
