@@ -97,7 +97,7 @@ function abortHandler(event) {
   $( function() {
     $( "#datepicker" ).datepicker({
       changeYear: true,
-      yearRange: "1941:1999",
+      yearRange: "1955:1999",
       changeMonth: true
     });
   } );

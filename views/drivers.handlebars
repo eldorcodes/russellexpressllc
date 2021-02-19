@@ -9,7 +9,7 @@
             </div>
             <div class="row">
                 {{#each drivers}}
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-12 col-sm-12">
                     <div class="single-service wow fadeInUp" data-wow-delay="0.2s">
                         <i class="fa"><img src="assets/images/user.png"></i>
                         <h2>{{name}}</h2>
@@ -26,6 +26,7 @@
                         <small style="color: royalblue;">{{getLastMinute date}}</small>
                     </div>
                 </div>
+                <hr>
                 {{else}}
                 <p>No application received</p>
             {{/each}}
