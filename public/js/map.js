@@ -21,7 +21,7 @@ function initMap() {
         icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png'
     });
     var infoWindow = new google.maps.InfoWindow({
-        content: `<img src="/assets/images/logos/logo.png" style="width:75px" >`
+        content: `<img src="/assets/images/logos/logo-transparent.png" style="width:75px" >`
     })
-    infoWindow.open(map,marker)
+    infoWindow.open(map, marker)
 }
