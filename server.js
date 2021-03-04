@@ -66,9 +66,6 @@ app.get('/applyindetail', (req, res) => {
     res.send('URL expired')
 })
 app.get('/contact', (req, res) => {
-    res.render('contact')
-})
-app.get('/contact', (req, res) => {
     res.render('contactus');
 });
 app.get('/terms', (req, res) => {
