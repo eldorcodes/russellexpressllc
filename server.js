@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const keys = require('./config/key');
 const Nexmo = require('nexmo');
 const Handlebars = require('handlebars');
-const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-access');
+const { allowInsecurePrototypeAccess } = require('@handlebars/allow-prototype-access');
 const nodemailer = require("nodemailer");
 const formidable = require('formidable');
 const cors = require('cors');
@@ -24,7 +24,7 @@ const {
     getYear
 } = require('./helpers/time');
 const key = require('./config/key');
-const {upload} = require('./helpers/aws');
+const { upload } = require('./helpers/aws');
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({
     extended: false
@@ -33,7 +33,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.engine('handlebars', exphbs({
     defaultLayout: 'main',
-    handlebars:allowInsecurePrototypeAccess(Handlebars),
+    handlebars: allowInsecurePrototypeAccess(Handlebars),
     helpers: {
         formatDate: formatDate,
         getLastMinute: getLastMinute,
@@ -53,39 +53,50 @@ mongoose.connect(keys.MongoURI, {
 }).catch((err) => {
     console.log(err);
 });
-app.get('/',(req,res) => {
+app.get('/', (req, res) => {
     res.render('home');
 });
-app.get('/about',(req,res) => {
+app.get('/about', (req, res) => {
     res.render('about')
 })
-app.get('/apply',(req,res) => {
+app.get('/apply', (req, res) => {
     res.render('apply')
 })
-app.get('/applyindetail',(req,res) => {
+app.get('/applyindetail', (req, res) => {
     res.send('URL expired')
 })
-app.get('/contact',(req,res) => {
+app.get('/contact', (req, res) => {
     res.render('contact')
 })
-app.get('/drivers',(req,res) => {
-    Driver.find({}).then((drivers) => {
-        console.log(drivers)
-        res.render('drivers',{
-            drivers:drivers
-        })
-    }).catch((e) => console.log(e))
-})
-// receive image
-app.post('/uploadImage',upload.any(),(req,res) => {
+app.get('/contactus', (req, res) => {
+    res.render('contactus');
+});
+app.get('/terms', (req, res) => {
+    res.render('terms');
+});
+app.get('/privacy', (req, res) => {
+    res.render('privacy');
+});
+app.get('/inbox', (req, res) => {
+        Driver.find({}).then((drivers) => {
+            Contact.find({}).then((contacts) => {
+                res.render('inbox', {
+                    drivers: drivers,
+                    contacts: contacts
+                })
+            }).catch((e) => console.log(e))
+        }).catch((e) => console.log(e))
+    })
+    // receive image
+app.post('/uploadImage', upload.any(), (req, res) => {
     const form = new formidable.IncomingForm();
-    form.on('file',(field,file) => {
+    form.on('file', (field, file) => {
         console.log(file);
     });
-    form.on('error',(err) => {
+    form.on('error', (err) => {
         console.log(err);
     });
-    form.on('end',() => {
+    form.on('end', () => {
         console.log('Image received successfully..');
     });
     form.parse(req);
@@ -117,12 +128,12 @@ io.on('connection', (socket) => {
             number: newDriver.number,
             ssn: newDriver.ssn,
             address: newDriver.address,
-            age:newDriver.age,
-            clientDrivingExperience:newDriver.clientDrivingExperience,
-            typeOfLicense:newDriver.typeOfLicense,
-            clientLicenseNumber:newDriver.clientLicenseNumber,
-            legalDocument:newDriver.legalDocument,
-            licenseImage:`https://car-rental-app.s3.amazonaws.com/${newDriver.imageUrl}`,
+            age: newDriver.age,
+            clientDrivingExperience: newDriver.clientDrivingExperience,
+            typeOfLicense: newDriver.typeOfLicense,
+            clientLicenseNumber: newDriver.clientLicenseNumber,
+            legalDocument: newDriver.legalDocument,
+            licenseImage: `https://car-rental-app.s3.amazonaws.com/${newDriver.imageUrl}`,
             date: new Date()
         }
         new Driver(newDriverInfo).save((err, driver) => {
@@ -145,29 +156,29 @@ io.on('connection', (socket) => {
                 nexmo.message.sendSms(from, to, text);
 
                 // NODE MAILER
-                 // create reusable transporter object using the default SMTP transport
-                    let transporter = nodemailer.createTransport({
-                        service: 'gmail',
-                        host: 'smtp.gmail.com', 
-                        port: 587,
-                        secure: false, // true for 465, false for other ports
-                        auth: {
+                // create reusable transporter object using the default SMTP transport
+                let transporter = nodemailer.createTransport({
+                    service: 'gmail',
+                    host: 'smtp.gmail.com',
+                    port: 587,
+                    secure: false, // true for 465, false for other ports
+                    auth: {
                         user: 'eldor2887@gmail.com', // generated ethereal user
                         pass: keys.pass, // generated ethereal password
-                        },
-                        tls: {
-                            // do not fail on invalid certs
-                            rejectUnauthorized: false
-                        }
-                    });
+                    },
+                    tls: {
+                        // do not fail on invalid certs
+                        rejectUnauthorized: false
+                    }
+                });
 
-                    // send mail with defined transport object
-                    transporter.sendMail({
-                        from: '"Russell Express LLC" <russellexpressllc@gmail.com>', // sender address
-                        to: "russellxpress@gmail.com, eldorcodes@icloud.com", // list of receivers
-                        subject: "New CDL Driver just submitted application online.", // Subject line
-                        text: "Here is detailed information below.", // plain text body
-                        html: `Hello! Here is new driver information recently submitted online. <br> Name: ${newDriver.name},
+                // send mail with defined transport object
+                transporter.sendMail({
+                    from: '"Russell Express LLC" <russellexpressllc@gmail.com>', // sender address
+                    to: "russellxpress@gmail.com, eldorcodes@icloud.com", // list of receivers
+                    subject: "New CDL Driver just submitted application online.", // Subject line
+                    text: "Here is detailed information below.", // plain text body
+                    html: `Hello! Here is new driver information recently submitted online. <br> Name: ${newDriver.name},
                         <br>
                         Email: ${newDriver.email},<br>
                         Phone: ${newDriver.number}, <br>
@@ -183,7 +194,7 @@ io.on('connection', (socket) => {
                         I will update you later! <br>
                         Thank you! Have a good day!<br>
                         <small>This is automatic email ..</small>`, // html body
-                    }).catch((e) => console.log(e))
+                }).catch((e) => console.log(e))
             }
         });
     });
@@ -195,9 +206,9 @@ io.on('connection', (socket) => {
     //     console.log(number.number)
     // })
     // listen to newReview event
-    socket.on('newReview',(newReview) => {
+    socket.on('newReview', (newReview) => {
         console.log(newReview);
-        new Review(newReview).save((err,review) => {
+        new Review(newReview).save((err, review) => {
             if (err) {
                 console.log(err);
             }
@@ -207,9 +218,9 @@ io.on('connection', (socket) => {
         })
     });
     // send only 4 and 5 star review to client
-    Review.find({$or: [{rating:4},{rating:5}]}).then((reviews) => {
-        socket.emit('reviews',{reviews:reviews});
-    }).catch((err) => {console.log(err)});
+    Review.find({ $or: [{ rating: 4 }, { rating: 5 }] }).then((reviews) => {
+        socket.emit('reviews', { reviews: reviews });
+    }).catch((err) => { console.log(err) });
 });
 io.on('disconnection', () => {
     console.log('Disconnected from Client');
