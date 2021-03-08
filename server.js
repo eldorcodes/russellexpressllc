@@ -75,17 +75,14 @@ app.get('/privacy', (req, res) => {
     res.render('privacy');
 });
 app.get('/inbox', (req, res) => {
-    Driver.find({}).then((drivers) => {
-        Contact.find({}).then((contacts) => {
-            res.render('inbox', {
-                drivers: drivers,
-                contacts: contacts
-            })
+        Driver.find({}).then((drivers) => {
+            Contact.find({}).then((contacts) => {
+                res.render('inbox', {
+                    drivers: drivers,
+                    contacts: contacts
+                })
+            }).catch((e) => console.log(e))
         }).catch((e) => console.log(e))
-    }).catch((e) => console.log(e))
-})
-app.get('/pdf', (req, res) => {
-        res.render('pdf')
     })
     // receive image
 app.post('/uploadImage', upload.any(), (req, res) => {
