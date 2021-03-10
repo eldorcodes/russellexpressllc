@@ -25,6 +25,7 @@ const {
 } = require('./helpers/time');
 const key = require('./config/key');
 const { upload } = require('./helpers/aws');
+const driver = require('./models/driver');
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({
     extended: false
@@ -74,19 +75,33 @@ app.get('/terms', (req, res) => {
 app.get('/privacy', (req, res) => {
     res.render('privacy');
 });
-app.get('/applications', (req, res) => {
-    Driver.find({}).then((drivers) => {
-        res.render('inbox', {
-            drivers: drivers
-        })
-    }).catch((e) => console.log(e))
-})
+// app.get('/applications', (req, res) => {
+//     Driver.find({}).then((drivers) => {
+//         res.render('inbox', {
+//             drivers: drivers
+//         })
+//     }).catch((e) => console.log(e))
+// })
 app.get('/inbox', (req, res) => {
-        Contact.find({}).then((contacts) => {
-            res.render('contacts', {
-                contacts: contacts
+    res.render('checker', {
+        errorMessage: ''
+    });
+});
+app.post('/check', (req, res) => {
+        if (req.body.code == keys.code) {
+            Contact.find({}).then((contacts) => {
+                Driver.find({}).then((drivers) => {
+                    res.render('contacts', {
+                        contacts: contacts,
+                        drivers: drivers
+                    })
+                }).catch((e) => console.log(e))
+            }).catch(e => console.log(e))
+        } else {
+            res.render('checker', {
+                errorMessage: 'Passcode is incorrect'
             })
-        }).catch(e => console.log(e))
+        }
     })
     // receive image
 app.post('/uploadImage', upload.any(), (req, res) => {
