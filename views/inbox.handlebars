@@ -32,31 +32,4 @@
             {{/each}}
             </div>
         </div>
-        
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="section-title">
-                        <h2>Messages</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                {{#each contacts}}
-                <div class="col-md-12 col-sm-6">
-                    <div class="single-service wow fadeInUp" data-wow-delay="0.2s">
-                        <i class="fa"><img src="assets/images/user.png"></i>
-                        <h2>{{name}}</h2>
-                        <p><b>Email:</b> <a href="mailto:{{email}}"> {{email}}</a></p>
-                        <p><b>Phone:</b> <a href="tel:{{phone}}"> {{phone}}</a></p>
-                        <p><b>Message:</b> {{message}}</p>
-                        <small style="color: royalblue;">{{getLastMinute date}}</small>
-                    </div>
-                </div>
-                <hr>
-                {{else}}
-                <p>No messages received ..</p>
-            {{/each}}
-            </div>
-        </div>
     </section>

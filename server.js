@@ -74,15 +74,19 @@ app.get('/terms', (req, res) => {
 app.get('/privacy', (req, res) => {
     res.render('privacy');
 });
+app.get('/applications', (req, res) => {
+    Driver.find({}).then((drivers) => {
+        res.render('inbox', {
+            drivers: drivers
+        })
+    }).catch((e) => console.log(e))
+})
 app.get('/inbox', (req, res) => {
-        Driver.find({}).then((drivers) => {
-            Contact.find({}).then((contacts) => {
-                res.render('inbox', {
-                    drivers: drivers,
-                    contacts: contacts
-                })
-            }).catch((e) => console.log(e))
-        }).catch((e) => console.log(e))
+        Contact.find({}).then((contacts) => {
+            res.render('contacts', {
+                contacts: contacts
+            })
+        }).catch(e => console.log(e))
     })
     // receive image
 app.post('/uploadImage', upload.any(), (req, res) => {
