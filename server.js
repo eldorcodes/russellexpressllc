@@ -23,9 +23,7 @@ const {
     getLastMinute,
     getYear
 } = require('./helpers/time');
-const key = require('./config/key');
 const { upload } = require('./helpers/aws');
-const driver = require('./models/driver');
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({
     extended: false
